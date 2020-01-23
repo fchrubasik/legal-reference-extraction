@@ -184,7 +184,16 @@ class DivideAndConquerLawRefExtractorMixin(object):
             'Art. ' + sect_pattern + ' (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Art. ' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Art. ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
-            'Art. ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead, 
+            'Art. ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,
+            
+
+
+            # Patterns for \xa0
+            sectionSign + '\xa0' + sect_pattern + ' (?P<book>' + book_pattern + ')' + book_look_ahead,
+            sectionSign + '\xa0' + sect_pattern + ' Absatz ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
+            sectionSign + '\xa0' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
+            sectionSign + '\xa0' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
+            sectionSign + '\xa0' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,
         ]
 
         markers_waiting_for_book = []  # type: List[RefMarker]
