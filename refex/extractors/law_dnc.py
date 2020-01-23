@@ -32,7 +32,7 @@ class DivideAndConquerLawRefExtractorMixin(object):
     # Book identifiers (used to generate regular expression)
     law_book_codes = []
     default_law_book_codes = ['AsylG', 'BGB', 'GG', 'VwGO', 'GkG', 'stbstg', 'lbo', 'ZPO', 'LVwG', 'AGVwGO SH', 'BauGB',
-                                'BauNVO', 'ZWStS', 'SbStG', 'StPO', 'TKG', 'SG', 'SGG', 'SGB X', 'EMRK', 'GRCh']
+                                'BauNVO', 'ZWStS', 'SbStG', 'StPO', 'TKG', 'SG', 'SGG', 'SGB X']
 
 
     # All text non-word symbols
@@ -172,18 +172,12 @@ class DivideAndConquerLawRefExtractorMixin(object):
             # § 42 Abs. 1 Alt. 1 VwGO
             sectionSign + ' ' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             sectionSign + ' (?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
-            sectionSign + ' (?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,            
+            sectionSign + ' (?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,      
             #Art.
             'Art. ' + sect_pattern + ' (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Art. ' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Art. ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
             'Art. ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,
-            #Artikel, Absatz
-            'Artikel ' + sect_pattern + ' (?P<book>' + book_pattern + ')' + book_look_ahead,
-            'Artikel ' + sect_pattern + ' Absatz ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
-            'Artikel ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
-            'Artikel ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,
-
         ]
 
         markers_waiting_for_book = []  # type: List[RefMarker]
@@ -281,14 +275,14 @@ class DivideAndConquerLawRefExtractorMixin(object):
 
         logger.debug('Law book ref with %i books' % len(law_book_codes))
 
-        return '|'.join([code.lower() if to_lower else code for code in law_book_codes])
+        #return '|'.join([code.lower() if to_lower else code for code in law_book_codes])
 
         # alternative regex:
         # start with capital char
         # optional, max length chars
         # ends with V,G,O or B
         # optional space + roman numbers (e.g. SGB IX)
-        #return '([A-ZÄÜÖ][-ÄÜÖäüöA-Za-z]{,20})(V|G|O|B)(?:\s([XIV]{1,5}))?'
+        return '([A-ZÄÜÖ][-ÄÜÖäüöA-Za-z]{,20})(V|G|O|B)(?:\s([XIV]{1,5}))?'
 
     def extract_law_ref_markers_with_context(self, content):
         """
