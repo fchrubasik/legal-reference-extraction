@@ -64,7 +64,8 @@ class CaseRefExtractorMixin(object):
             'Truppendienstgericht Nord', 'TDG Nord',
             'Truppendienstgericht Süd', 'TDG Süd',
             'EUGH', 'Truppendienstgericht S&#252;d',
-            'TDG S&#252;d',
+            'TDG S&#252;d', 'Truppendienstgericht S&uuml;d',
+            'TDG S&uuml;d',
         ]
         states = [
             'Berlin',
@@ -82,7 +83,7 @@ class CaseRefExtractorMixin(object):
             'Sachsen',
             'Sachsen-Anhalt',
             'Schleswig-Holstein', 'Schl.-Holst.', 'SH',
-            'Thüringen', 'Th&#252;ringen',
+            'Thüringen', 'Th&#252;ringen', 'Th&uuml;ringen',
         ]
         state_courts = [
             'OVG',
