@@ -174,13 +174,13 @@ class DivideAndConquerLawRefExtractorMixin(object):
             sectionSign + ' ' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             sectionSign + ' (?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
             sectionSign + ' (?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,
-            #Artikel
+            # Artikel
             'Artikel ' + sect_pattern + ' (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Artikel ' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Artikel ' + sect_pattern + ' Absatz ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Artikel ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
             'Artikel ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<next_book>(i\.V\.m\.|iVm))' + book_look_ahead,      
-            #Art.
+            # Art.
             'Art. ' + sect_pattern + ' (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Art. ' + sect_pattern + ' Abs. ([0-9]+) Alt. ([0-9]+) (?P<book>' + book_pattern + ')' + book_look_ahead,
             'Art. ' + '(?P<sect>([0-9]+)(\s?[a-z]?)) ' + any_content + ' (?P<book>(' + book_pattern + '))' + book_look_ahead,
